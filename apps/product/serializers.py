@@ -17,7 +17,7 @@ class CategorySerializer(serializers.ModelSerializer):
 class CPUSerializer(serializers.ModelSerializer):
     class Meta:
         model = CPU
-        fields = ("id", "slug")
+        fields = ("id", "slug", "cores", "base_clock")
 
 
 class GPUSerializer(serializers.ModelSerializer):

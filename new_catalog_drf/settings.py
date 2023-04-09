@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "django_extensions",
     "rest_framework",
+    "django_filters",
     # Приложения
     "apps.product",
     "apps.index",
@@ -130,3 +131,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 INTERNAL_IPS = ["127.0.0.1"]
 
 FIXTURE_DIRS = [BASE_DIR / "fixtures"]
+
+REST_FRAMEWORK = {
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"]
+}

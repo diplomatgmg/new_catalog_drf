@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from apps.product.models import Brand, Category, CPUModel, GPUModel
+from apps.product.models import Brand, Category, CPU, GPU
 
 
 @admin.register(Brand)
@@ -18,11 +18,11 @@ class BaseProductModelAdmin(admin.ModelAdmin):
     list_select_related = ("brand",)
 
 
-@admin.register(CPUModel)
+@admin.register(CPU)
 class CPUModelAdmin(BaseProductModelAdmin):
     pass
 
 
-@admin.register(GPUModel)
+@admin.register(GPU)
 class GPUModelAdmin(BaseProductModelAdmin):
     pass

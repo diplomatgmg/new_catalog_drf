@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "rest_framework",
     # Приложения
     "apps.product",
+    "apps.index",
 ]
 
 MIDDLEWARE = [

@@ -19,6 +19,9 @@ class Category(models.Model):
     name = models.CharField("Категория", max_length=100)
     slug = models.SlugField("Слаг", max_length=20, unique=True)
 
+    def get_absolute_url(self):
+        return self.slug
+
     def __str__(self):
         return self.name
 
@@ -56,7 +59,7 @@ class BaseProductModel(models.Model):
         abstract = True
 
 
-class CPUModel(CPUBase, BaseProductModel):
+class CPU(CPUBase, BaseProductModel):
     family = models.CharField(
         max_length=50,
         verbose_name="Семейство",
@@ -190,7 +193,7 @@ class CPUModel(CPUBase, BaseProductModel):
         )
 
 
-class GPUModel(GPUBase, BaseProductModel):
+class GPU(GPUBase, BaseProductModel):
     family = models.CharField(
         verbose_name="Семейство", max_length=50, help_text="Пример: GeForce RTX"
     )

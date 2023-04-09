@@ -1,6 +1,6 @@
-import django_filters
-from rest_framework import pagination
-from rest_framework.viewsets import ModelViewSet
+from rest_framework import pagination, mixins
+from rest_framework import pagination, mixins
+from rest_framework.viewsets import GenericViewSet
 
 from apps.product.filters import CPUFilter
 from apps.product.models import CPU, GPU
@@ -11,11 +11,14 @@ class ModelPagination(pagination.PageNumberPagination):
     page_size = 15
 
 
-class BaseModelViewSet(ModelViewSet):
+class BaseModelViewSet(
+    mixins.RetrieveModelMixin, mixins.ListModelMixin, GenericViewSet
+):
     pagination_class = ModelPagination
 
 
 class CPUModelViewSet(BaseModelViewSet):
+    lookup_field = "slug"
     queryset = CPU.objects.all()
     serializer_class = CPUSerializer
     filterset_class = CPUFilter

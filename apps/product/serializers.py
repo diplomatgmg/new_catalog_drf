@@ -17,7 +17,12 @@ class CategorySerializer(serializers.ModelSerializer):
 class CPUSerializer(serializers.ModelSerializer):
     class Meta:
         model = CPU
-        fields = ("id", "slug", "cores", "base_clock")
+        fields = ("id", "slug", "cores", "base_clock", "url")
+
+    url = serializers.SerializerMethodField()
+
+    def get_url(self, obj):
+        return obj.get_absolute_url()
 
 
 class GPUSerializer(serializers.ModelSerializer):

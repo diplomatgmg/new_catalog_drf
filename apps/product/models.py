@@ -1,5 +1,6 @@
 from django.db import models
 from django.template.defaultfilters import slugify
+from rest_framework.reverse import reverse
 
 from apps.product.base_model import CPUBase, GPUBase
 
@@ -48,6 +49,11 @@ class BaseProductModel(models.Model):
     def get_full_name(self):
         raise NotImplementedError(
             f"Не объявлен метод get_full_name в классе {self.__class__.__name__}"
+        )
+
+    def get_absolute_url(self):
+        return reverse(
+            f"product:{self.category.slug}-detail", kwargs={"slug": self.slug}
         )
 
     def save(self, **kwargs):

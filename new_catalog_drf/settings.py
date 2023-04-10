@@ -133,5 +133,5 @@ INTERNAL_IPS = ["127.0.0.1"]
 FIXTURE_DIRS = [BASE_DIR / "fixtures"]
 
 REST_FRAMEWORK = {
-    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"]
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
 }

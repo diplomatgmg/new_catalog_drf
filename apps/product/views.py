@@ -2,7 +2,8 @@ from rest_framework import pagination, mixins
 from rest_framework import pagination, mixins
 from rest_framework.viewsets import GenericViewSet
 
-from apps.product.filters import CPUFilter
+from apps.product.filters import CPUFilter, GPUFilter
+
 from apps.product.models import CPU, GPU
 from apps.product.serializers import GPUSerializer, CPUSerializer
 
@@ -27,3 +28,5 @@ class CPUModelViewSet(BaseModelViewSet):
 class GPUModelViewSet(BaseModelViewSet):
     queryset = GPU.objects.all()
     serializer_class = GPUSerializer
+    filterset_class = GPUFilter
+

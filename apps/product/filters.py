@@ -1,6 +1,6 @@
 import django_filters
 
-from apps.product.models import CPU
+from apps.product.models import CPU, GPU
 
 
 class BaseFilter(django_filters.FilterSet):
@@ -38,9 +38,7 @@ class CPUFilter(BaseFilter):
         "family",
         "model",
         "year",
-        "segment",
         "socket",
-        "unlocked_multiplier",
         "architecture",
         "technology",
         "integrated_graphics",
@@ -58,4 +56,21 @@ class CPUFilter(BaseFilter):
         "l1_cache",
         "l2_cache",
         "l3_cache",
+    ]
+
+
+class GPUFilter(BaseFilter):
+    class Meta:
+        model = GPU
+        fields = "__all__"
+        exclude = ["category", "slug"]
+
+    multiple_choices = [
+        "family",
+        "model",
+    ]
+
+    range_choices = [
+        "base_clock",
+        "boost_clock",
     ]

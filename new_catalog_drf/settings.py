@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # Приложения
     "apps.product",
     "apps.index",
+    "apps.favorites",
 ]
 
 MIDDLEWARE = [
@@ -131,6 +132,25 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 INTERNAL_IPS = ["127.0.0.1"]
 
 FIXTURE_DIRS = [BASE_DIR / "fixtures"]
+
+MODEL_SLUG_PREFIXES = (
+    "cpu",
+    "gpu",
+)
+
+PRODUCT_MODELS = [
+    f"product.{prefix.upper()}" for prefix in MODEL_SLUG_PREFIXES
+]
+
+# COMPARISON_MODELS = [
+#     f"comparison.{prefix.upper()}Comparison" for prefix in MODEL_SLUG_PREFIXES
+# ]
+# REVIEW_MODELS = [
+#     f"review.{prefix.upper()}Review" for prefix in MODEL_SLUG_PREFIXES
+# ]
+
+# Уникальное имя для добавления товаров в сравнение в сессии пользователя
+COMPARISON_SESSION = "comparison"
 
 REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],

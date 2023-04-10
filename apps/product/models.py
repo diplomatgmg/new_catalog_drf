@@ -52,9 +52,11 @@ class BaseProductModel(models.Model):
         )
 
     def get_absolute_url(self):
-        return reverse(
-            f"product:{self.category.slug}-detail", kwargs={"slug": self.slug}
-        )
+        return reverse(f"product:{self.category.slug}-detail", args=[self.slug])
+
+    def get_favorites_url(self, method="add"):
+        assert method in ("add", "remove"), 'Метод должен быть "add" или "remove"'
+        return reverse(f"favorites:{method}", args=[self.category.slug, self.slug])
 
     def save(self, **kwargs):
         full_name = self.get_full_name()
